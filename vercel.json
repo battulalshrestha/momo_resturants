@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "momo_resturant/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "momo_resturant/wsgi.py"
+    }
+  ]
+}
