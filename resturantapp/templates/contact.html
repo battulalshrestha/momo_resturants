@@ -1,53 +1,48 @@
 {% extends "base.html" %}
-{% block title %}
-  Contact
-{% endblock title %}
+{% block title %} - Contact{% endblock %}
 {% block content %}
-{% load static %}  
+{% load static %}
 
-<!-- contact section start -->
+<!-- Contact Hero -->
 <div class="contact_section layout_padding">
-   <div class="container">
-      <h1 class="contact_text">Our Contact</h1>
-      <p class="pin">GET IN TOUCH</p>
-      <p class="pin"><span style='color:red'>Our Friendly Team </span>would love to hear from you</p>
-
-   </div>
+    <div class="container">
+        <h1 class="contact_text">Our Contact</h1>
+        <p class="pin">GET IN TOUCH</p>
+        <p class="pin"><span style='color:#f76d37;'>Our Friendly Team </span>would love to hear from you</p>
+    </div>
 </div>
 
-
-<div class="services_section_2">
-   <div class="row">
-      <div class="col-lg-4 col-sm-12 col-md-4">
-         <div class="box_main">
-            <div class="house_icon">
+<!-- Contact Cards -->
+<div class="services_section_2" style="padding: 40px 0; background:#f9f5f0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-4 mb-4">
+                <div class="box_main text-center">
+                    <h3 class="decorate_text"><i class="fa-sharp fa-solid fa-location-dot me-2"></i>LOCATION</h3>
+                    <p class="tation_text">Rautepani-3, Gorkha, Nepal</p>
+                    <p class="tation_text">Branch: Chaysal, Lalitpur</p>
+                </div>
             </div>
-            <h3 class="decorate_text"><i class="fa-sharp fa-solid fa-location-dot"></i>LOCATION</h3>
-            <p class="tation_text">Rautepani-3,Gorkha</p>
-            <div class="readmore_bt"><a href="#">Read More</a></div>
-         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 col-md-4">
-         <div class="box_main">
-            <div class="house_icon">
+            <div class="col-lg-4 col-sm-12 col-md-4 mb-4">
+                <div class="box_main text-center">
+                    <h3 class="decorate_text"><i class="fa-solid fa-phone me-2"></i>PHONE</h3>
+                    <p class="tation_text"><a href="tel:+9779825476152" style="color:inherit;">+977 9825476152</a></p>
+                    <p class="tation_text" style="font-size:0.85rem; color:#9ca3af;">Mon–Sun: 9AM–11PM</p>
+                </div>
             </div>
-            <h3 class="decorate_text"><i class="fa-solid fa-phone"></i>PHONE</h3>
-            <p class="tation_text">Mobile:(+977) 9825476152</p>
-            <div class="readmore_bt"><a href="#">Read More</a></div>
-         </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-12 col-md-4">
-         <div class="box_main">
-            <div class="house_icon">
+            <div class="col-lg-4 col-sm-12 col-md-4 mb-4">
+                <div class="box_main text-center">
+                    <h3 class="decorate_text"><i class="fa-solid fa-envelope me-2"></i>EMAIL</h3>
+                    <p class="tation_text">
+                        <a href="mailto:nishanshrestha2059@gmail.com" style="color:inherit;">
+                            nishanshrestha2059@gmail.com
+                        </a>
+                    </p>
+                    <p class="tation_text" style="font-size:0.85rem; color:#9ca3af;">We respond within 24 hours</p>
+                </div>
             </div>
-            <h3 class="decorate_text"><i class="fa-solid fa-envelope"></i>EMAIL</h3>
-            <p class="tation_text">Email: nishanshrestha2059@gmail.com </p>
-            <div class="readmore_bt"><a href="#">Read More</a></div>
-         </div>
-      </div>
+        </div>
+    </div>
+</div>
 
-
-
-
-      {% endblock content %}
+{% endblock content %}

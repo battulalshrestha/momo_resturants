@@ -1,142 +1,303 @@
 {% extends "base.html" %}
-{% block title %}
-  Menu
-{% endblock title %}
+{% block title %}— Our Menu{% endblock %}
 {% block content %}
 {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/s.css' %}">
 
-
-<!-- gallery section start -->
-<div class="gallery_section layout_padding">
-   <div class="container">
-      <div class="row">
-         <div class="col-sm-12">
-            <h1 class="gallery_taital">Our Menu</h1>
-            <p class="gallery_text"><span style="color:red">Our menu is more than just momos</span><br>With a variety of
-               dishes to cater to all tastes and preferences.</p>
-         </div>
-      </div>
-      <div>
-         <h1 class="just">Scan the QR code</h1>
-         <h1 class="qr-image"><img src="{% static 'images/Qr.jpg' %}"></h1>
-      </div>
-      <div class="gallery_section_2">
-         <div class="row">
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/buff_momo.jpeg' %}" alt="Avatar" class="image">
-                  <span> Buff C. Momo</span>
-                  <p class="card-price">रु200</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/buff_fried.jpg' %}" alt="Avatar" class="image">
-                  <span> Buff Fried Momo</span>
-                  <p class="card-price">रु150</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/momo.jpg' %}" alt="Avatar" class="image">
-                  <span> Buff Steam Momo</span>
-                  <p class="card-price">रु110</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-
-         </div>
-      </div>
-
-      <div class="gallery_section_2">
-         <div class="row">
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/chicken_c.jpg' %}" alt="Avatar" class="image">
-                  <span> Chicken C. Momo</span>
-                  <p class="card-price">रु240</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/chicken_fried.jpg' %}" alt="Avatar" class="image">
-                  <span> Chicken Fried Momo</span>
-                  <p class="card-price">रु220</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/chicken_steam.jpg' %}" alt="Avatar" class="image">
-                  <span> Chicken Steam Momo</span>
-                  <p class="card-price">रु200</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-         </div>
-      </div>
-
-      <div class="gallery_section_2">
-         <div class="row">
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/veg_momo.jpg' %}" alt="Avatar" class="image">
-                  <span> Veg C. Momo</span>
-                  <p class="card-price">रु150</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/veg_fried.jpg' %}" alt="Avatar" class="image">
-                  <span> Veg Fried Momo</span>
-                  <p class="card-price">रु120</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-4">
-               <div class="container_main">
-                  <img src="{% static 'images/green_veg.jpeg' %}" alt="Avatar" class="image">
-                  <span> Veg Steam Momo</span>
-                  <p class="card-price">रु100</p>
-                  <div class="overlay">
-                     <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-
-
-         </div>
-      </div>
-      <div class="seemore_bt"><a href="#">See More</a></div>
-   </div>
+<!-- Menu Hero -->
+<div style="background:linear-gradient(135deg,#1a0500,#3d1200,var(--orange));padding:4rem 0;text-align:center;">
+  <div class="container">
+    <h1 style="font-family:var(--font-head);font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:white;margin-bottom:0.5rem;"
+        data-aos="fade-up">Our Menu</h1>
+    <p style="color:rgba(255,255,255,0.75);font-size:1rem;" data-aos="fade-up" data-aos-delay="100">
+      More than just momos — a variety for every taste and preference
+    </p>
+    <!-- Cart shortcut -->
+    <a href="{% url 'cart' %}" data-aos="fade-up" data-aos-delay="200"
+       style="display:inline-flex;align-items:center;gap:8px;margin-top:1rem;padding:10px 24px;background:white;color:var(--orange);border-radius:8px;font-weight:700;font-size:0.875rem;">
+      <i class="fa-solid fa-cart-shopping"></i>
+      View Cart(<span id="menu-cart-count">0</span> items)
+    </a>
+  </div>
 </div>
-<!-- gallery section end -->
-{% endblock content %}
+
+<div class="gallery_section layout_padding">
+  <div class="container">
+
+    <!-- QR Code -->
+    <div class="text-center mb-1" data-aos="fade-up">
+      <h2 class="just">Scan Our QR Menu</h2>
+      <div class="qr-image">
+        <img src="{% static 'images/Qr.jpg' %}" alt="QR Code Menu">
+      </div>
+    </div>
+    <style>
+     .qr-image {
+  display: flex;
+  justify-content: center;   
+  align-items: center;    
+}
+
+.qr-image img {
+  width: 300px;
+  height: 450px;
+}
+       
+    </style>
+    <!-- Category Filter -->
+    <div class="d-flex justify-content-center gap-2 flex-wrap mb-4" data-aos="fade-up">
+      <button class="menu-filter-btn active" onclick="filterMenu('all', this)">All</button>
+      <button class="menu-filter-btn" onclick="filterMenu('buff', this)">🐃 Buff</button>
+      <button class="menu-filter-btn" onclick="filterMenu('chicken', this)">🍗 Chicken</button>
+      <button class="menu-filter-btn" onclick="filterMenu('veg', this)">🌿 Veg</button>
+    </div>
+
+    <!-- BUFF -->
+    <div class="gallery-category mb-5" data-category="buff">
+      <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#1a0800;margin-bottom:1.5rem;border-left:4px solid var(--orange);padding-left:1rem;"
+          data-aos="fade-up">🐃 Buff Momos</h3>
+      <div class="gallery_section_2">
+        <div class="row g-4">
+          {% if buff_items %}
+            {% for item in buff_items %}
+            <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:0 }}00">
+              <div class="container_main">
+                {% if item.image %}
+                  <img src="{{ item.image.url }}" alt="{{ item.name }}" class="image">
+                {% else %}
+                  <img src="{% static 'images/momo.jpg' %}" alt="{{ item.name }}" class="image">
+                {% endif %}
+                <span>{{ item.name }}</span>
+                <div class="card-price">रु{{ item.price|floatformat:0 }}</div>
+                <div class="overlay">
+                  <div class="text">
+                    <button onclick="addToCart({{ item.pk }},'{{ item.name|escapejs }}','Buff',{{ item.price }},'🐃')"
+                            style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;"> 
+                      <i  class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+          <div class="col-md-4 col-sm-6" data-aos="fade-up">
+            <div class="container_main">
+              <img src="{% static 'images/buff_momo.jpeg' %}" alt="Buff C. Momo" class="image">
+              <span>Buff Chilly Momo</span>
+              <div class="card-price">रु200</div>
+              <div class="overlay"><div class="text">
+                <button onclick="addToCart(1,'Buff Chilly Momo','Buff',200,'🐃')"
+                        style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                  <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                </button>
+              </div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="container_main">
+              <img src="{% static 'images/buff_fried.jpg' %}" alt="Buff Fried Momo" class="image">
+              <span>Buff Fried Momo</span>
+              <div class="card-price">रु150</div>
+              <div class="overlay"><div class="text">
+                <button onclick="addToCart(2,'Buff Fried Momo','Buff',150,'🐃')"
+                        style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                  <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                </button>
+              </div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="container_main">
+              <img src="{% static 'images/momo.jpg' %}" alt="Buff Steam Momo" class="image">
+              <span>Buff Steam Momo</span>
+              <div class="card-price">रु110</div>
+              <div class="overlay"><div class="text">
+                <button onclick="addToCart(3,'Buff Steam Momo','Buff',110,'🐃')"
+                        style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                  <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                </button>
+              </div></div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- CHICKEN -->
+    <div class="gallery-category mb-5" data-category="chicken">
+      <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#1a0800;margin-bottom:1.5rem;border-left:4px solid var(--orange);padding-left:1rem;"
+          data-aos="fade-up">🍗 Chicken Momos</h3>
+      <div class="gallery_section_2">
+        <div class="row g-4">
+          {% if chicken_items %}
+            {% for item in chicken_items %}
+            <div class="col-md-4 col-sm-6" data-aos="fade-up">
+              <div class="container_main">
+                {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.name }}" class="image">
+                {% else %}<img src="{% static 'images/chicken_steam.jpg' %}" alt="{{ item.name }}" class="image">{% endif %}
+                <span>{{ item.name }}</span>
+                <div class="card-price">रु{{ item.price|floatformat:0 }}</div>
+                <div class="overlay"><div class="text">
+                  <button onclick="addToCart({{ item.pk }},'{{ item.name|escapejs }}','Chicken',{{ item.price }},'🍗')"
+                          style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                    <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                  </button>
+                </div></div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+          <div class="col-md-4 col-sm-6" data-aos="fade-up">
+            <div class="container_main">
+              <img src="{% static 'images/chicken_c.jpg' %}" alt="Chicken C. Momo" class="image">
+              <span>Chicken Chilly Momo</span><div class="card-price">रु240</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(4,'Chicken Chilly Momo','Chicken',240,'🍗')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="container_main">
+              <img src="{% static 'images/chicken_fried.jpg' %}" alt="Chicken Fried Momo" class="image">
+              <span>Chicken Fried Momo</span><div class="card-price">रु220</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(5,'Chicken Fried Momo','Chicken',220,'🍗')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="container_main">
+              <img src="{% static 'images/chicken_steam.jpg' %}" alt="Chicken Steam Momo" class="image">
+              <span>Chicken Steam Momo</span><div class="card-price">रु200</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(6,'Chicken Steam Momo','Chicken',200,'🍗')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- VEG -->
+    <div class="gallery-category mb-3" data-category="veg">
+      <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#1a0800;margin-bottom:1.5rem;border-left:4px solid var(--orange);padding-left:1rem;"
+          data-aos="fade-up">🌿 Veg Momos</h3>
+      <div class="gallery_section_2">
+        <div class="row g-4">
+          {% if veg_items %}
+            {% for item in veg_items %}
+            <div class="col-md-4 col-sm-6" data-aos="fade-up">
+              <div class="container_main">
+                {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.name }}" class="image">
+                {% else %}<img src="{% static 'images/veg_momo.jpg' %}" alt="{{ item.name }}" class="image">{% endif %}
+                <span>{{ item.name }}</span>
+                <div class="card-price">रु{{ item.price|floatformat:0 }}</div>
+                <div class="overlay"><div class="text">
+                  <button onclick="addToCart({{ item.pk }},'{{ item.name|escapejs }}','Veg',{{ item.price }},'🌿')"
+                          style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                    <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart
+                  </button>
+                </div></div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+          <div class="col-md-4 col-sm-6" data-aos="fade-up">
+            <div class="container_main">
+              <img src="{% static 'images/veg_momo.jpg' %}" alt="Veg C. Momo" class="image">
+              <span>Veg Chilly Momo</span><div class="card-price">रु150</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(7,'Veg Chilly Momo','Veg',150,'🌿')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="container_main">
+              <img src="{% static 'images/veg_fried.jpg' %}" alt="Veg Fried Momo" class="image">
+              <span>Veg Fried Momo</span><div class="card-price">रु120</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(8,'Veg Fried Momo','Veg',120,'🌿')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="container_main">
+              <img src="{% static 'images/green_veg.jpeg' %}" alt="Veg Steam Momo" class="image">
+              <span>Veg Steam Momo</span><div class="card-price">रु100</div>
+              <div class="overlay"><div class="text"><button onclick="addToCart(9,'Veg Steam Momo','Veg',100,'🌿')"
+                      style="background:white;color:var(--orange);border:none;border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:0.875rem;">
+                <i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button></div></div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Go to cart -->
+    <div class="text-center mt-4">
+      <a href="{% url 'cart' %}"
+         style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:var(--orange);color:white;border-radius:10px;font-weight:700;font-size:1rem;box-shadow:0 8px 24px rgba(247,109,55,0.35);transition:all 0.3s;"
+         onmouseover="this.style.transform='translateY(-2px)'"
+         onmouseout="this.style.transform=''">
+        <i class="fa-solid fa-cart-shopping"></i> Go to Cart &amp; Order
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Live cart count in menu page header
+  function refreshMenuCount() {
+    try {
+      var cart = JSON.parse(localStorage.getItem('momos_cart') || '[]');
+      var qty  = cart.reduce(function(s,i){ return s + (i.qty||1); }, 0);
+      var el   = document.getElementById('menu-cart-count');
+      if (el) el.textContent = qty;
+    } catch(e) {}
+  }
+  refreshMenuCount();
+  window.addEventListener('storage', refreshMenuCount);
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('[onclick^="addToCart"]')) {
+      setTimeout(refreshMenuCount, 200);
+    }
+  });
+
+  // Category filter
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.menu-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-category').forEach(function(sec) {
+      if (cat === 'all' || sec.dataset.category === cat) {
+        sec.style.display = 'block';
+      } else {
+        sec.style.display = 'none';
+      }
+    });
+  }
+</script>
+<style>
+  .menu-filter-btn {
+    padding: 8px 22px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .menu-filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .menu-filter-btn.active { background: var(--orange); border-color: var(--orange); color: white; }
+</style>
+{% endblock %}

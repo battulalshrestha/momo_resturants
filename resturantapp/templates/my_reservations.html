@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="layout_padding" style="background:#f9f5f0; min-height:80vh;">
+  <div class="container">
+
+    <!-- Title -->
+    <div class="text-center mb-5">
+      <h1 style="font-weight:800; font-size:40px; color:#222;">
+        My Reservations
+      </h1>
+      <p style="color:#777;">View and manage your table bookings</p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table reservation-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Guests</th>
+            <th>Status</th>
+            <th>Booked On</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% if reservations %}
+            {% for r in reservations %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ r.date }}</td>
+              <td>{{ r.time }}</td>
+              <td>{{ r.guests }}</td>
+
+              <td>
+                {% if r.status == 'confirmed' %}
+                  <span class="badge badge-success">Confirmed</span>
+                {% elif r.status == 'pending' %}
+                  <span class="badge badge-warning">Pending</span>
+                {% else %}
+                  <span class="badge badge-danger">Cancelled</span>
+                {% endif %}
+              </td>
+
+              <td>{{ r.created_at|date:"M d, Y" }}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="6" class="text-center">
+                <div class="empty-box">
+                  <i class="fa-solid fa-calendar-xmark"></i>
+                  <p>No reservations found</p>
+                  <a href="{% url 'reservation' %}" class="btn-book">
+                    Book a Table
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+<style>
+/* Table Styling */
+.reservation-table {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.reservation-table th {
+  background: #f76d37;
+  color: white;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.reservation-table td,
+.reservation-table th {
+  padding: 14px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Hover */
+.reservation-table tbody tr:hover {
+  background: #fff4ed;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-success {
+  background: #22c55e;
+  color: white;
+}
+
+.badge-warning {
+  background: #facc15;
+  color: black;
+}
+
+.badge-danger {
+  background: #ef4444;
+  color: white;
+}
+
+/* Empty State */
+.empty-box {
+  padding: 40px;
+  text-align: center;
+}
+
+.empty-box i {
+  font-size: 40px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.empty-box p {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+/* Button */
+.btn-book {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #f76d37;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-book:hover {
+  background: #e55a24;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .reservation-table th,
+  .reservation-table td {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+</style>

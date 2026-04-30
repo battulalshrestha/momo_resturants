@@ -1,0 +1,8 @@
+Django==6.0.3
+django-allauth
+django-unfold
+PyJWT
+cryptography
+whitenoise
+gunicorn
+python-dotenv

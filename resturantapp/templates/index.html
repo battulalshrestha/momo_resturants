@@ -1,389 +1,615 @@
 {% extends "base.html" %}
-{% block title %}
-{% endblock title %}
+{% load static %}
+
+{% block title %}— Best Momos in Nepal{% endblock %}
+
 {% block content %}
-  {% load static %}
-   <!-- banner section start -->
-   <div class="banner_section layout_padding">
-      <div class="container">
-         <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="row">
-                     <div class="col-sm-6">
 
-                     </div>
-                     <div class="col-sm-6">
-                        <div class="banner_title">
-                           <h1 class="outstanding_text" style="color: white;" data-aos="zoom-out" data-aos-duration="2000"><b style="color: #f76d37;">M</b>OMOS</h1>
-                           <h1 class="coffee_text" data-aos="zoom-in" data-aos-duration="2000">The Best <br> Momo Restaurant</h1>
-                           <p class="there_text" data-aos="fade-up" data-aos-duration="1000">
-                              We at <b style="color: #f76d37;">M</b>OMOS are passionate about bringing you the authentic taste of Nepal 
-                              through our momos. Made with fresh, high-quality ingredients and following traditional recipes, 
-                              our momos are bursting with flavor and sure to tantalize your taste buds. Whether you're a momo 
-                              aficionado or a curious newcomer, we offer a warm and welcoming atmosphere where you can savor 
-                              this delicious Nepalese dish. 
-                              Come experience the magic of momos and embark on a culinary journey to Nepal!
-                           </p>
-                           <div class="learnmore_bt" data-aos="fade-up" data-aos-duration="1000"><a href="">LEARN MORE</a></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+<!-- HERO -->
+<section class="banner_section layout_padding">
+  <div class="container">
 
-            </div>
-            <div class="sliders-bottom" data-aos="fade-up" data-aos-duration="1000">
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-               </a>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- banner section end -->
-   <!-- about section start -->
-   <div class="about_section layout_padding">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="row-md-2">
-                  <div class="about_taital_main">
-                     <div class="about_taital" data-aos="fade-up" data-aos-duration="1000">Why Customer Love Us?</div>
-                     <p class="about_text" data-aos="fade-up" data-aos-duration="1000">We serve up authentic momos bursting with flavor, made with 
-                        fresh ingredients and traditional recipes. We offer a warm and welcoming atmosphere, 
-                        perfect for enjoying a delicious and satisfying meal. Whether you're a momo
-                        connoisseur or just discovering their magic, we're sure you'll love our taste of Nepal.</p>
-                     <div class="read_bt"><a href="">READ MORE</a></div>
-                     
-                     
-                  </div>
-               </div>
-               
-               <div class="row-md-4 about_img" data-aos="fade-up" data-aos-duration="1000">
-                  <img  src="{% static 'images/top-momo.jpg' %}">
-               </div>
-               
-               
-            </div>
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-5">
-               <div class="about_img1" data-aos="fade-up" data-aos-duration="1000"><img src="{% static 'images/eating.jpg' %}' %}"></div>
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="hero-grid">
 
-
-   <!-- services section start -->
-      <div class="services_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-sm-12">
-                  <h1 class="services_taital" data-aos="fade-up" data-aos-duration="1000"> Our Services</h1>
-                  <p class="services_text" data-aos="fade-up" data-aos-duration="1000">KNOWING OUR CUSTOMER NEEDS </p>
-                  <p class="services_text" data-aos="fade-up" data-aos-duration="1000">We're more then just momos</p>
-                  <p class="services_text" data-aos="fade-up" data-aos-duration="1000">We're a full-services dining experience!</p>
-               </div>
-            </div>
-            <div class="services_section_2">
-               <div class="row">
-                  <div class="col-lg-4 col-sm-12 col-md-4">
-                     <div class="box_main active" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="house_icon">
-                           <img src="{% static 'images/high-quality.png' %}"  class="image_1">
-                           <img src="{% static 'images/quality2.png' %}" class="image_2">
-                        </div>
-                        <h3 class="decorate_text">Quality Food</h3>
-                        <p class="tation_text">
-                           We believe in using only the highest quality ingredients to create momos that are bursting with flavor. 
-                           Our fillings are prepared daily with fresh, vegetables and succulent meats.
-                           
-                        </p>
-                        <div class="readmore_bt"><a href="">Read More</a></div>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-12 col-md-4">
-                     <div class="box_main" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="house_icon">
-                           <img src="{% static 'images/party.png' %}" class="image_1">
-                           <img src="{% static 'images/party2.png' %}" class="image_2">
-                        </div>
-                        <h3 class="decorate_text">Private Party</h3>
-                        <p class="tation_text">
-                           Pair your momos with our selection of dipping sauces and chutneys for an unforgettable get-together. 
-                           Let us help you create a fun and flavorful feast for your next celebration!
-                        </p>
-                        <div class="readmore_bt"><a href="">Read More</a></div>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-12 col-md-4">
-                     <div class="box_main" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="house_icon">
-                           <img src="{% static 'images/food-cover.png' %}" class="image_1">
-                           <img src="{% static 'images/catering2.png' %}" class="image_2">
-                        </div>
-                        <h3 class="decorate_text">Catering</h3>
-                        <p class="tation_text">
-                           Make your next gathering unforgettable with our momo catering service! 
-                           We offer a variety of catering packages to suit any event size and budget as per need.
-                        </p>
-                        <div class="readmore_bt"><a href="">Read More</a></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- services section end -->
-
-      <!-- gallery section start -->
-   <div class="card text-center tab-titles-class" >
-      <h1 data-aos="fade-up" data-aos-duration="1000">Top Items</h1>
-      <h3 style="margin-bottom: 30px;">Here's our top items for today:</h3>
-      <div class="container">
-         <ul class="tab-titles text-center" data-aos="fade-up" data-aos-duration="1000">
-            <li class="tab-links menu-title active" onclick="opentab('buf')">Buff</li>
-            <li class="tab-links menu-title" onclick="opentab('chicken')">Chicken</li>
-            <li class="tab-links menu-title" onclick="opentab('veg')">Veg</li>
-         </ul>
+      <!-- LEFT IMAGE -->
+      <div class="hero-left">
+        <img src="{% static 'images/momo.jpg' %}" alt="Momos">
       </div>
 
-      <div class="tab-content active-tab" data-aos="fade-up" data-aos-duration="1000" id="buf">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/steam_buff.jpg' %}">
-                     </p>
+      <!-- RIGHT CONTENT -->
+      <div class="hero-right">
 
-                  </div>
-                     <div class="row-md-2">
-                        <span>Buff Steam Momo</span>
-                        <div class="card-price">रु120</div>
-                     </div>
-   
-               </div>
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/buff_fried.jpg' %}">
-                     </p>
-                  </div>
-                  <div class="row-md-4">
-                     <span>Buff Fried Momo</span>
-                     <div class="card-price">रु130</div>
-                  </div>
-               </div>
-               <div class="col-md-4 menu-item">
-                  
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/buff_momo.jpeg' %}">
-                     </p>
-                  </div>
-                  <div class="row-md-4">
-                     <span>Buff Chilly momo</span>
-                     <div class="card-price">रु200</div>
-                  </div>
-               </div>
+        <div class="banner_title">
+          <div data-aos="zoom-out">
+            <h1 class="outstanding_text">
+              <b style="color:var(--orange)">M</b>OMOS
+            </h1>
+            <h2 class="coffee_text">The Best<br>Momo Restaurant</h2>
+          </div>
+
+          <p class="there_text">
+            We bring you the authentic taste of Nepal — fresh ingredients,
+            traditional recipes, and momos bursting with flavor.
+          </p>
+
+          <!-- BUTTONS -->
+          <div class="hero-buttons">
+            <div class="learnmore_bt">
+              <a href="{% url 'menu' %}">VIEW MENU</a>
             </div>
-         </div>
+
+            <a href="{% url 'cart' %}" class="hero-cart-btn">
+              <i class="fa-solid fa-cart-shopping"></i> MY CART
+            </a>
+          </div>
+
+          <!-- STATS -->
+          <div class="hero-stats">
+            <div>
+              <h4>500+</h4>
+              <p>Happy Customers</p>
+            </div>
+
+            <div>
+              <h4>20+</h4>
+              <p>Menu Items</p>
+            </div>
+
+            <div>
+              <h4>5★</h4>
+              <p>Average Rating</p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="tab-content" id="chicken" data-aos="fade-up" data-aos-duration="1000">
-         <div class="container text-center">
-            <div class="row">
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_steam.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Chicken Steam Momo</span>
-                        <div class="card-price">रु150</div>
-                     </div>
-   
-               </div>
+    </div>
 
+  </div>
+</section>
 
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_fried.jpg' %}">
-                     </p>
+<style>
 
-                  </div>
-                     <div class="row-md-2">
-                        <span>Chicken Fried Momo</span>
-                        <div class="card-price">रु180</div>
-                     </div>
-   
-               </div>
-   
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_c.jpg' %}">
-                     </p>
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+} */
 
-                  </div>
-                     <div class="row-md-2">
-                        <span>Chicken Chilly momo</span>
-                        <div class="card-price">रु200</div>
-                     </div>
-               </div>
-            </div>
-         </div>
+/* LEFT IMAGE */
+.hero-left {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-left img {
+  max-width: 950px;
+  width: 100%;
+  border-radius: 40px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+}
+
+/* RIGHT SIDE */
+.hero-right {
+  color: white;
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.hero-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.4);
+  text-decoration: none;
+}
+
+.hero-cart-btn:hover {
+  background: white;
+  color: #f76d37;
+}
+
+/* STATS */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.hero-stats h4 {
+  color: white;
+  font-weight: 800;
+  margin: 0;
+}
+
+.hero-stats p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-left {
+    order: 2;
+  }
+
+  .hero-right {
+    order: 1;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+}
+</style> 
+<!-- ABOUT -->
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="800">
+        <div class="about_taital_main">
+          <div class="about_taital">Why Customers Love Us?</div>
+
+          <p class="about_text">
+            We serve authentic Nepalese momos made with fresh ingredients and traditional recipes.
+            Whether you love buff, chicken, or veg momo, our warm environment and fresh taste make
+            every visit special.
+          </p>
+
+        </div>
       </div>
 
-      <div class="tab-content" id="veg" data-aos="fade-up" data-aos-duration="1000">
-         <div class="container text-center">
-            <div class="row">
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/steam_veg.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Steam Momo</span>
-                        <div class="card-price">रु100</div>
-                     </div>
-   
-               </div>
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/veg_fried.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Fried Momo</span>
-                        <div class="card-price">रु110</div>
-                     </div>
-   
-               </div>
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/veg_momo.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Chilly Momo</span>
-                        <div class="card-price">रु110</div>
-                     </div>
-   
-               </div>
-            </div>
-         </div>
+      <div class="col-md-6" data-aos="fade-left" data-aos-duration="800">
+        <div class="about_img">
+          <img src="{% static 'images/eating.jpg' %}"
+               alt="Customers enjoying momos"
+               style="width:100%;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 16px 40px rgba(247,109,55,0.2);">
+        </div>
       </div>
+    </div>
+  </div>
+</section>
 
-   </div>
-   <!-- gallery section end -->
 
-      <!-- testimonial section start -->
-      <div class="client_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-sm-12">
-                  <h1 class="client_taital" data-aos="fade-up" data-aos-duration="1000">TESTEMONIALS</h1>
-                  <p class="client_text" data-aos="fade-up" data-aos-duration="1000">
-                     Here's what our customers have to say about us:
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="client_section_2">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="testimonial_section_2">
-                                 <h4 class="client_name_text" data-aos="fade-up" data-aos-duration="1000">Liladhar Bhatta
-                                    <span class="quick_icon">
-                                    <img src="{% static 'images/liladhar.jpg' %}">
-                                 </span>
-                              </h4>
-                                 <p class="customer_text" data-aos="fade-up" data-aos-duration="1000">
-                                    Just discovered this place and I'm obsessed! 
-                                    The atmosphere is so warm and inviting, perfect for a casual lunch with friends. 
-                                    We tried a bunch of momos to share - veggie, chicken, and pork - and honestly, 
-                                    couldn't pick a favorite. Each one was bursting with flavor and cooked to perfection.  
-                                    Definitely coming back to work my way through the whole menu!
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="carousel-item">
-                  <div class="client_section_2">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="testimonial_section_2">
-                                 <h4 class="client_name_text">Rajesh
-                                    <span class="quick_icon">
-                                    <img src="{% static 'images/liladhar.jpg' %}">
-                                 </span>
-                              </h4>
-                                 <p class="customer_text">Momos have always been a favorite comfort food, but yours are on another level! 
-                                    The fillings are so fresh and flavorful, and the dough is perfectly cooked - light and chewy at the same time.  
-                                    I can never decide which filling to try, so the variety is amazing.  
-                                    This place is now my go-to for a delicious and satisfying meal.  Highly recommend!</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="carousel-item">
-                  <div class="client_section_2">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="testimonial_section_2">
-                                 <h4 class="client_name_text">Jon
-                                    <span class="quick_icon">
-                                    <img src="{% static 'images/liladhar.jpg' %}">
-                                 </span>
-                              </h4>
-                                 <p class="customer_text">
-                                    We recently had a family gathering and decided to try your momo catering for the first time. 
-                                    It was a huge hit! Everyone loved the different fillings, especially the spicy ones (me!). 
-                                    The momos themselves were beautifully steamed and the dipping sauces were delicious.  
-                                    Delivery was on time and everything was perfectly presented.  
-                                    Huge thanks for making our event so easy and enjoyable!
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               
-            </div>
-         </div>
+<!-- SERVICES -->
+<section class="services_section layout_padding" style="background:#fff;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center mb-4">
+        <h1 class="services_taital" data-aos="fade-up">Our Services</h1>
+        <p class="services_text" data-aos="fade-up" data-aos-delay="100">KNOWING OUR CUSTOMER NEEDS</p>
+        <p class="services_text" data-aos="fade-up" data-aos-delay="150">
+          We're more than just momos — a full-service dining experience.
+        </p>
       </div>
+    </div>
 
-{% endblock content %}
+    <div class="services_section_2">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up">
+          <div class="box_main active">
+            <div class="house_icon">
+              <img src="{% static 'images/high-quality.png' %}" class="image_1" alt="Quality Food">
+              <img src="{% static 'images/quality2.png' %}" class="image_2" alt="Quality Food">
+            </div>
+            <h3 class="decorate_text">Quality Food</h3>
+            <p class="tation_text">
+              Only the freshest ingredients — fillings prepared daily with vegetables, herbs, and meats.
+            </p>
+            <div class="readmore_bt">
+              <a href="{% url 'services' %}">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="100">
+          <div class="box_main">
+            <div class="house_icon">
+              <img src="{% static 'images/party.png' %}" class="image_1" alt="Private Party">
+              <img src="{% static 'images/party2.png' %}" class="image_2" alt="Private Party">
+            </div>
+            <h3 class="decorate_text">Private Party</h3>
+            <p class="tation_text">
+              Make birthdays, gatherings, and celebrations unforgettable with our momo feast packages.
+            </p>
+            <div class="readmore_bt">
+              <a href="{% url 'services' %}">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
+          <div class="box_main">
+            <div class="house_icon">
+              <img src="{% static 'images/food-cover.png' %}" class="image_1" alt="Catering">
+              <img src="{% static 'images/catering2.png' %}" class="image_2" alt="Catering">
+            </div>
+            <h3 class="decorate_text">Catering</h3>
+            <p class="tation_text">
+              Flexible catering packages for small and large events with fresh and hot momos.
+            </p>
+            <div class="readmore_bt">
+              <a href="{% url 'services' %}">Read More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TOP MENU ITEMS -->
+<section class="tab-titles-class">
+  <div class="container">
+    <h1 data-aos="fade-up">Top Items</h1>
+    <p class="services_text mb-4" data-aos="fade-up">
+      Order online — add your favorite momos to cart.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+      {% if top_items %}
+        {% for item in top_items %}
+        <div class="col-lg-4 col-md-6 col-sm-10 menu-item" data-aos="fade-up">
+          <div class="menu-item-card">
+            <div class="img-wrap">
+              {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+              {% else %}
+                <img src="{% static 'images/momo.jpg' %}" alt="{{ item.name }}">
+              {% endif %}
+            </div>
+
+            <div class="menu-item-info">
+              <span>{{ item.name }}</span>
+              <div class="card-price">रु{{ item.price|floatformat:0 }}</div>
+            </div>
+
+            <div style="padding:0 1rem 1rem;">
+              {% if user.is_authenticated %}
+              <button type="button"
+                      class="add-cart-btn w-100"
+                      onclick="addBackendCart({{ item.id }}, this)">
+                <i class="fa-solid fa-cart-plus me-1"></i> Add to Cart
+              </button>
+              {% else %}
+              <a href="{% url 'login' %}?next={% url 'menu' %}"
+                 class="add-cart-btn w-100"
+                 style="display:block;text-align:center;text-decoration:none;">
+                <i class="fa-solid fa-right-to-bracket me-1"></i> Login to Order
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12 text-center">
+          <p>No menu items available yet.</p>
+          <a href="{% url 'menu' %}" class="btn btn-warning">View Menu</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'menu' %}"
+         style="display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--orange);color:white;border-radius:8px;font-weight:700;font-size:0.95rem;text-decoration:none;">
+        <i class="fa-solid fa-utensils"></i> View Full Menu
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="client_section testimonial-fixed-section">
+  <div class="container">
+    <div class="testimonial-heading">
+      <h1 class="client_taital"> WHAT CUSTOMERS SAY</h1>
+      <p class="client_text" data-aos="fade-up">Real reviews from real momo lovers</p>
+    </div>
+
+    <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        {% if reviews %}
+          {% for review in reviews %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="testimonial_card">
+              <div class="review-stars">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                {% endfor %}
+              </div>
+
+              <p class="customer_text">
+                “{{ review.comment }}”
+              </p>
+
+              <h4 class="client_name_text">
+                — {{ review.reviewer_name }}</h4>
+
+                <small>{{ review.created_at|date:"F Y" }}</small>
+           
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <div class="testimonial_card">
+              <div class="review-stars">★★★★★</div>
+              <p class="customer_text">
+                “The momos were fresh, tasty, and full of authentic Nepali flavor.
+                Definitely coming back again!”
+              </p>
+              <h4 class="client_name_text">— Happy Customer</h4>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+<br>
+      <div class="testimonial-controls">
+        <button class="testimonial-arrow" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+          <i class="fa fa-angle-left"></i>
+        </button>
+
+        <button class="testimonial-arrow" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+          <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      {% if user.is_authenticated %}
+        <a href="{% url 'index' %}#review-section" class="review-cta">
+          <i class="fa-solid fa-star"></i> Share Your Experience
+        </a>
+      {% else %}
+        <p class="login-review-text">
+          <a href="{% url 'login' %}">Log in</a> to leave a review
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+<!-- REVIEW FORM -->
+{% if user.is_authenticated %}
+<section class="review_form_section" id="review-section">
+  <div class="container">
+    <div class="review_form_card">
+      <h3>Write a Review</h3>
+
+      <form method="POST" action="{% url 'add_review' %}">
+        {% csrf_token %}
+
+        <input type="hidden"
+               name="reviewer_name"
+               value="{{ user.get_full_name|default:user.username }}">
+
+        <div class="mb-3">
+          <label class="form-label">Rating</label>
+          <select name="rating" class="form-control" required>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Comment</label>
+          <textarea name="comment"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Tell us about your experience..."
+                    required></textarea>
+        </div>
+
+        <button type="submit" class="review-submit-btn">
+          Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== REVIEW FORM (NO HTML CHANGE) ===== */
+
+.review_form_section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, blue, pink);
+}
+
+/* Card */
+.review_form_card {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 35px;
+  background: blue;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border: 1px solid #eee;
+  transition: 0.3s ease;
+}
+
+.review_form_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+/* Title */
+.review_form_card h3 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+/* Labels */
+.review_form_card .form-label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.review_form_card .form-control {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: 0.25s ease;
+  background: #fafafa;
+}
+
+/* Focus effect */
+.review_form_card .form-control:focus {
+  border-color: #f76d37;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(247,109,55,0.15);
+  outline: none;
+}
+
+/* Textarea */
+.review_form_card textarea.form-control {
+  min-height: 140px;
+}
+
+/* Button */
+.review-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f76d37;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+/* Button hover */
+.review-submit-btn:hover {
+  background: #e55a24;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .review_form_section {
+    padding: 60px 15px;
+  }
+
+  .review_form_card {
+    padding: 25px;
+  }
+
+  .review_form_card h3 {
+    font-size: 24px;
+  }
+}
+</style>
+{% endif %}
+{% endblock %}
+{% block extra_js %}
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+
+    return cookieValue;
+  }
+
+  function addBackendCart(itemId, button) {
+    const oldText = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Adding...';
+
+    fetch(`/cart/add/${itemId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'),
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      button.innerHTML = '<i class="fa-solid fa-check me-1"></i> Added';
+
+      const navCount = document.getElementById('nav-cart-count');
+      const navCount2 = document.getElementById('nav-cart-count-2');
+
+      if (data.cart_count !== undefined) {
+        if (navCount) navCount.textContent = data.cart_count;
+        if (navCount2) navCount2.textContent = data.cart_count;
+      }
+
+      if (window.alertify) {
+        alertify.success(data.message || 'Item added to cart!');
+      }
+
+      setTimeout(() => {
+        button.disabled = false;
+        button.innerHTML = oldText;
+      }, 1200);
+    })
+    .catch(() => {
+      button.disabled = false;
+      button.innerHTML = oldText;
+
+      if (window.alertify) {
+        alertify.error('Could not add item. Please try again.');
+      } else {
+        alert('Could not add item. Please try again.');
+      }
+    });
+  }
+</script>
+{% endblock %}

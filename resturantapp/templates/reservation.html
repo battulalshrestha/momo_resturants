@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %} - Book a Table{% endblock %}
+{% block content %}
+{% load static %}
+<style>
+    .res-hero { background: linear-gradient(135deg, rgb(62,9,100), rgb(32,32,128)); color: white; padding: 60px 0; text-align: center; }
+    .res-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .res-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+    .res-page { background: #f9f5f0; padding: 60px 0; }
+    .res-card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; max-width: 700px; margin: 0 auto; }
+    .res-card-header { background: #f76d37; color: white; padding: 1.5rem 2rem; }
+    .res-card-header h2 { margin: 0; font-size: 1.3rem; font-weight: 700; }
+    .res-card-body { padding: 2rem; }
+    .form-label { font-size: 0.875rem; color: #6b7280; font-weight: 600; margin-bottom: 6px; }
+    .form-control, select.form-control { border: 1px solid #d1d5db; border-radius: 8px; padding: 0.7rem 1rem; font-size: 0.9rem; width: 100%; outline: none; transition: border-color 0.2s; }
+    .form-control:focus { border-color: #f76d37; box-shadow: 0 0 0 3px rgba(247,109,55,0.15); }
+    textarea.form-control { height: 90px; resize: vertical; }
+    .btn-reserve { background: #f76d37; color: white; border: none; padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; width: 100%; letter-spacing: 1px; transition: background 0.2s; }
+    .btn-reserve:hover { background: #e55a24; }
+    .info-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+    .info-box i { color: #f76d37; margin-right: 8px; }
+    .info-box p { margin: 0; font-size: 0.875rem; color: #9a3412; }
+</style>
+
+<div class="res-hero">
+    <div class="container">
+        <h1><i class="fa-solid fa-calendar-check me-3"></i>Book a Table</h1>
+        <p>Reserve your spot for an authentic momo experience</p>
+    </div>
+</div>
+
+<div class="res-page">
+    <div class="container">
+        <div class="res-card">
+            <div class="res-card-header">
+                <h2><i class="fa-solid fa-utensils me-2"></i>Reservation Details</h2>
+            </div>
+            <div class="res-card-body">
+                <div class="info-box">
+                    <p><i class="fa-solid fa-circle-info"></i>
+                        We are open <strong>Mon–Fri: 10AM–10PM</strong> and
+                        <strong>Sat–Sun: 9AM–11PM</strong>. For groups larger than 10, please call us directly.
+                    </p>
+                </div>
+
+                <form method="POST" action="{% url 'reservation' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="date">
+                                <i class="fa-solid fa-calendar me-1"></i>Date *
+                            </label>
+                            <input type="date" name="date" id="date" class="form-control"
+                                min="{% now 'Y-m-d' %}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="time">
+                                <i class="fa-solid fa-clock me-1"></i>Time *
+                            </label>
+                            <select name="time" id="time" class="form-control" required>
+                                <option value="">Select a time</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="guests">
+                            <i class="fa-solid fa-users me-1"></i>Number of Guests *
+                        </label>
+                        <select name="guests" id="guests" class="form-control" required>
+                            {% for i in "12345678910" %}
+                            <option value="{{ forloop.counter }}">{{ forloop.counter }} Guest{% if forloop.counter > 1 %}s{% endif %}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="special_requests">
+                            <i class="fa-solid fa-note-sticky me-1"></i>Special Requests (optional)
+                        </label>
+                        <textarea name="special_requests" id="special_requests" class="form-control"
+                            placeholder="Allergies, dietary restrictions, special occasions..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-reserve">
+                        <i class="fa-solid fa-calendar-check me-2"></i>CONFIRM RESERVATION
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

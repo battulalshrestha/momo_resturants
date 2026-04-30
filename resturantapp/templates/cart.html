@@ -1,0 +1,790 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}| My Cart{% endblock %}
+
+{% block extra_css %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  /* ── Base ─────────────────────────────── */
+  .cart-page {
+    min-height: 100vh;
+    background: #0a0a0f;
+    padding: 3rem 0 5rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #f0ece4;
+  }
+
+  .cart-page h1, .cart-page h2, .cart-page h3 {
+    font-family: 'Syne', sans-serif;
+  }
+
+  /* ── Page Header ──────────────────────── */
+  .cart-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .cart-header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #f76d37;
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+  }
+  .cart-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .cart-header span { color: #f76d37; }
+  .cart-header p {
+    color: rgba(240,236,228,0.45);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* ── Layout ───────────────────────────── */
+  .cart-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .cart-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Cart Item Card ───────────────────── */
+  .cart-items-box {
+    background: #12121a;
+    border: 1px solid rgba(247,109,55,0.12);
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+    position: relative;
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-item:hover { background: rgba(247,109,55,0.04); }
+
+  .cart-item-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    border: 2px solid rgba(247,109,55,0.2);
+  }
+  .cart-item-img-placeholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #1e1e2e, #2a1a10);
+    border: 2px solid rgba(247,109,55,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .cart-item-info { min-width: 0; }
+  .cart-item-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cart-item-category {
+    font-size: 0.75rem;
+    color: #f76d37;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .cart-item-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(240,236,228,0.6);
+  }
+  .cart-item-price strong { color: #f76d37; font-size: 1rem; }
+
+  /* Quantity Controls */
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #1c1c28;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-top: 0.6rem;
+    width: fit-content;
+  }
+  .qty-btn {
+    background: none;
+    border: none;
+    color: #f76d37;
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qty-btn:hover { background: rgba(247,109,55,0.15); }
+  .qty-num {
+    width: 36px;
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 0.4rem 0;
+  }
+
+  .cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+  .item-subtotal {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .remove-btn {
+    background: none;
+    border: none;
+    color: rgba(240,236,228,0.3);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s, background 0.2s;
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .remove-btn:hover {
+    color: #ef4444;
+    background: rgba(239,68,68,0.1);
+  }
+
+  /* Empty cart */
+  .cart-empty {
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .cart-empty .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.3;
+  }
+  .cart-empty h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .cart-empty p { color: rgba(240,236,228,0.4); margin-bottom: 1.5rem; }
+
+  /* ── Order Summary ────────────────────── */
+  .summary-box {
+    background: #12121a;
+    border: 1px solid rgba(247,109,55,0.15);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    position: sticky;
+    top: 100px;
+  }
+  .summary-box h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: rgba(240,236,228,0.65);
+  }
+  .summary-row.total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .summary-row.total span:last-child { color: #f76d37; font-family: 'Syne', sans-serif; font-size: 1.3rem; }
+
+  /* Coupon */
+  .coupon-row {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+  }
+  .coupon-input {
+    flex: 1;
+    background: #1c1c28;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    color: #f0ece4;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .coupon-input:focus { border-color: #f76d37; }
+  .coupon-input::placeholder { color: rgba(240,236,228,0.3); }
+  .coupon-btn {
+    background: rgba(247,109,55,0.15);
+    border: 1px solid rgba(247,109,55,0.3);
+    color: #f76d37;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .coupon-btn:hover { background: rgba(247,109,55,0.25); }
+
+  /* Order Type */
+  .order-type-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+  }
+  .order-type-btn {
+    background: #1c1c28;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.5rem;
+    color: rgba(240,236,228,0.5);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.6rem 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .order-type-btn i { display: block; font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .order-type-btn.active,
+  .order-type-btn:hover {
+    background: rgba(247,109,55,0.15);
+    border-color: #f76d37;
+    color: #f76d37;
+  }
+
+  /* Delivery address */
+  .delivery-address {
+    display: none;
+    margin-bottom: 1rem;
+  }
+  .delivery-address.show { display: block; }
+  .delivery-address textarea {
+    width: 100%;
+    background: #1c1c28;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #f0ece4;
+    font-size: 0.85rem;
+    resize: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .delivery-address textarea:focus { border-color: #f76d37; }
+  .delivery-address label {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(240,236,228,0.5);
+    margin-bottom: 0.4rem;
+  }
+
+  /* Checkout button */
+  .btn-checkout {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #f76d37, #e0562a);
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(247,109,55,0.3);
+    margin-top: 0.5rem;
+  }
+  .btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(247,109,55,0.45);
+    color: #fff;
+  }
+  .btn-checkout:active { transform: translateY(0); }
+
+  .btn-continue {
+    display: block;
+    text-align: center;
+    color: rgba(240,236,228,0.45);
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-continue:hover { color: #f76d37; }
+
+  /* Secure badge */
+  .secure-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: rgba(240,236,228,0.3);
+    margin-top: 1rem;
+  }
+  .secure-note i { color: #22c55e; }
+
+  /* Toast animation */
+  @keyframes slideInRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+  }
+  .cart-toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: #1c1c28;
+    border: 1px solid rgba(247,109,55,0.4);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    color: #f0ece4;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 0.6rem;
+    z-index: 9999;
+    animation: slideInRight 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    pointer-events: none;
+  }
+  .cart-toast i { color: #f76d37; }
+
+  /* Loading overlay */
+  .cart-loading {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(10,10,15,0.7);
+    z-index: 999;
+    align-items: center; justify-content: center;
+  }
+  .cart-loading.show { display: flex; }
+  .spinner {
+    width: 44px; height: 44px;
+    border: 3px solid rgba(247,109,55,0.2);
+    border-top-color: #f76d37;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Responsive */
+  @media (max-width: 560px) {
+    .cart-item { grid-template-columns: 70px 1fr auto; gap: 0.75rem; padding: 1rem; }
+    .cart-item-img, .cart-item-img-placeholder { width: 70px; height: 70px; }
+    .cart-item-actions { gap: 0.4rem; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="cart-page">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="cart-header" data-aos="fade-up" data-aos-duration="600">
+      <h1>Your <span>Cart</span></h1>
+      <p id="cart-count-header">Loading items…</p>
+    </div>
+
+    <div class="cart-grid">
+
+      <!-- ── LEFT: Cart Items ── -->
+      <div>
+        <div class="cart-items-box" id="cart-items-container">
+          <!-- Populated by JS -->
+          <div class="cart-empty" id="empty-state" style="display:none;">
+            <span class="empty-icon">🥟</span>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any momos yet!</p>
+            <a href="{% url 'menu' %}" class="btn-checkout" style="display:inline-block;width:auto;padding:.85rem 2rem;">
+              Browse Menu
+            </a>
+          </div>
+        </div>
+
+        <!-- Clear all -->
+        <div class="text-end mt-2" id="clear-btn-wrapper" style="display:none;">
+          <button onclick="clearCart()"
+                  style="background:none;border:none;color:rgba(240,236,228,0.3);font-size:.8rem;cursor:pointer;padding:.4rem .6rem;border-radius:.3rem;transition:color .2s;"
+                  onmouseover="this.style.color='#ef4444'"
+                  onmouseout="this.style.color='rgba(240,236,228,0.3)'">
+            <i class="fa fa-trash me-1"></i>Clear all
+          </button>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Order Summary ── -->
+      <div>
+        <div class="summary-box" data-aos="fade-left" data-aos-duration="700">
+          <h3>Order Summary</h3>
+
+          <!-- Order Type -->
+          <p style="font-size:.8rem;color:rgba(240,236,228,0.4);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;">Order Type</p>
+          <div class="order-type-group">
+            <div class="order-type-btn active" onclick="setOrderType('dine_in', this)">
+              <i class="fa fa-utensils"></i>Dine In
+            </div>
+            <div class="order-type-btn" onclick="setOrderType('takeaway', this)">
+              <i class="fa fa-bag-shopping"></i>Takeaway
+            </div>
+            <div class="order-type-btn" onclick="setOrderType('delivery', this)">
+              <i class="fa fa-motorcycle"></i>Delivery
+            </div>
+          </div>
+
+          <!-- Delivery address (shown only for delivery) -->
+          <div class="delivery-address" id="delivery-address-box">
+            <label>Delivery Address</label>
+            <textarea rows="2" id="delivery-address" placeholder="Enter your delivery address…"></textarea>
+          </div>
+
+          <!-- Coupon -->
+          <div class="coupon-row">
+            <input type="text" class="coupon-input" id="coupon-code" placeholder="Promo code">
+            <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+          </div>
+
+          <!-- Totals -->
+          <div class="summary-row">
+            <span>Subtotal (<span id="item-count">0</span> items)</span>
+            <span id="subtotal-val">रु0</span>
+          </div>
+          <div class="summary-row" id="discount-row" style="display:none;color:#22c55e;">
+            <span>Discount (<span id="discount-label"></span>)</span>
+            <span id="discount-val"></span>
+          </div>
+          <div class="summary-row" id="delivery-row" style="display:none;">
+            <span>Delivery fee</span>
+            <span id="delivery-val">रु50</span>
+          </div>
+          <div class="summary-row" style="color:rgba(240,236,228,0.4);font-size:.8rem;">
+            <span>Taxes (13% VAT)</span>
+            <span id="tax-val">रु0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="total-val">रु0</span>
+          </div>
+
+          <!-- Checkout -->
+          {% if user.is_authenticated %}
+          <form method="POST" action="#" id="checkout-form" onsubmit="handleCheckout(event)">
+            {% csrf_token %}
+            <input type="hidden" name="order_type" id="order-type-input" value="dine_in">
+            <input type="hidden" name="cart_data" id="cart-data-input">
+            <input type="hidden" name="delivery_address" id="delivery-address-input">
+            <button type="submit" class="btn-checkout" id="checkout-btn" disabled>
+              <i class="fa fa-lock me-2"></i>Place Order
+            </button>
+          </form>
+          {% else %}
+          <a href="{% url 'login' %}?next={% url 'menu' %}" class="btn-checkout">
+            <i class="fa fa-right-to-bracket me-2"></i>Login to Checkout
+          </a>
+          {% endif %}
+
+          <a href="{% url 'menu' %}" class="btn-continue">← Continue Shopping</a>
+
+          <div class="secure-note">
+            <i class="fa fa-shield-halved"></i> Secure &amp; encrypted checkout
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cart-grid -->
+  </div><!-- /container -->
+</div><!-- /cart-page -->
+
+<!-- Loading overlay -->
+<div class="cart-loading" id="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ═══════════════════════════════════════════════════════
+//  MOMOS Cart — localStorage-based cart manager
+// ═══════════════════════════════════════════════════════
+
+const CART_KEY   = 'momos_cart';
+const VAT_RATE   = 0.13;
+const DELIVERY_FEE = 50;
+
+// ── Seed with sample menu items so cart isn't empty on first visit ──
+function seedSampleItems() {
+  const existing = getCart();
+  if (existing.length > 0) return; // already has items
+
+  const samples = [
+    { id: 1, name: 'Buff Chilly Momo',   category: 'Buff',    price: 200, qty: 1, emoji: '🥟' },
+    { id: 2, name: 'Chicken Steam Momo', category: 'Chicken', price: 200, qty: 2, emoji: '🍲' },
+    { id: 3, name: 'Veg Fried Momo',     category: 'Veg',     price: 120, qty: 1, emoji: '🌿' },
+  ];
+  localStorage.setItem(CART_KEY, JSON.stringify(samples));
+}
+
+function getCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function updateQty(id, delta) {
+  let cart = getCart();
+  const idx = cart.findIndex(i => i.id === id);
+  if (idx === -1) return;
+  cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+  saveCart(cart);
+  render();
+}
+
+function removeItem(id) {
+  let cart = getCart().filter(i => i.id !== id);
+  saveCart(cart);
+  showToast('Item removed from cart');
+  render();
+}
+
+function clearCart() {
+  if (!confirm('Remove all items from cart?')) return;
+  saveCart([]);
+  render();
+}
+
+// ── Coupon state ──
+let discount = 0;
+let discountLabel = '';
+const COUPONS = { 'MOMOS10': 10, 'WELCOME20': 20, 'MOMO50': 50 };
+
+function applyCoupon() {
+  const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+  if (!code) { showToast('Enter a promo code first', 'warn'); return; }
+
+  if (COUPONS[code] !== undefined) {
+    discount = COUPONS[code];
+    discountLabel = code + ' (-' + discount + '%)';
+    showToast('Coupon applied — ' + discount + '% off!');
+    render();
+  } else {
+    discount = 0;
+    discountLabel = '';
+    showToast('Invalid coupon code', 'error');
+    render();
+  }
+}
+
+// ── Order type ──
+let orderType = 'dine_in';
+
+function setOrderType(type, el) {
+  orderType = type;
+  document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('order-type-input') &&
+    (document.getElementById('order-type-input').value = type);
+
+  const addrBox    = document.getElementById('delivery-address-box');
+  const deliveryRow = document.getElementById('delivery-row');
+  if (type === 'delivery') {
+    addrBox.classList.add('show');
+    deliveryRow.style.display = 'flex';
+  } else {
+    addrBox.classList.remove('show');
+    deliveryRow.style.display = 'none';
+  }
+  updateTotals(getCart());
+}
+
+// ── Render ──
+function render() {
+  const cart = getCart();
+  const container = document.getElementById('cart-items-container');
+  const emptyState = document.getElementById('empty-state');
+  const clearWrapper = document.getElementById('clear-btn-wrapper');
+  const checkoutBtn = document.getElementById('checkout-btn');
+
+  // Remove existing item rows (keep empty state)
+  container.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+  if (cart.length === 0) {
+    emptyState.style.display = 'block';
+    clearWrapper.style.display = 'none';
+    if (checkoutBtn) checkoutBtn.disabled = true;
+    document.getElementById('cart-count-header').textContent = 'Your cart is empty';
+    updateTotals([]);
+    return;
+  }
+
+  emptyState.style.display = 'none';
+  clearWrapper.style.display = 'block';
+  if (checkoutBtn) checkoutBtn.disabled = false;
+
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cart-count-header').textContent =
+    totalQty + ' item' + (totalQty !== 1 ? 's' : '') + ' in your cart';
+
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+    row.setAttribute('data-id', item.id);
+    row.innerHTML = `
+      <div class="cart-item-img-placeholder">${item.emoji || '🥟'}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-category">${item.category}</div>
+        <div class="cart-item-price">Unit price: <strong>रु${item.price}</strong></div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="updateQty(${item.id}, -1)" aria-label="Decrease">
+            <i class="fa fa-minus"></i>
+          </button>
+          <div class="qty-num">${item.qty}</div>
+          <button class="qty-btn" onclick="updateQty(${item.id}, 1)" aria-label="Increase">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="cart-item-actions">
+        <div class="item-subtotal">रु${subtotal}</div>
+        <button class="remove-btn" onclick="removeItem(${item.id})">
+          <i class="fa fa-xmark"></i> Remove
+        </button>
+      </div>
+    `;
+    container.insertBefore(row, emptyState);
+  });
+
+  updateTotals(cart);
+}
+
+function updateTotals(cart) {
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const discountAmt = Math.round(subtotal * (discount / 100));
+  const afterDiscount = subtotal - discountAmt;
+  const delivery = (orderType === 'delivery' && cart.length > 0) ? DELIVERY_FEE : 0;
+  const tax = Math.round((afterDiscount + delivery) * VAT_RATE);
+  const total = afterDiscount + delivery + tax;
+
+  document.getElementById('item-count').textContent  = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('subtotal-val').textContent = 'रु' + subtotal;
+  document.getElementById('tax-val').textContent      = 'रु' + tax;
+  document.getElementById('total-val').textContent    = 'रु' + total;
+  document.getElementById('delivery-val') &&
+    (document.getElementById('delivery-val').textContent = 'रु' + delivery);
+
+  const discRow = document.getElementById('discount-row');
+  if (discount > 0 && discountAmt > 0) {
+    discRow.style.display = 'flex';
+    document.getElementById('discount-label').textContent = discountLabel;
+    document.getElementById('discount-val').textContent = '-रु' + discountAmt;
+  } else {
+    discRow.style.display = 'none';
+  }
+
+  // Populate hidden form fields for server submission
+  const cartInput = document.getElementById('cart-data-input');
+  if (cartInput) cartInput.value = JSON.stringify(cart);
+  const addrInput = document.getElementById('delivery-address-input');
+  if (addrInput) addrInput.value = document.getElementById('delivery-address')?.value || '';
+}
+
+// ── Checkout ──
+function handleCheckout(e) {
+  e.preventDefault();
+  const cart = getCart();
+  if (cart.length === 0) { showToast('Your cart is empty!', 'warn'); return; }
+  if (orderType === 'delivery') {
+    const addr = document.getElementById('delivery-address')?.value.trim();
+    if (!addr) { showToast('Please enter your delivery address', 'warn'); return; }
+  }
+  document.getElementById('loading-overlay').classList.add('show');
+  // Simulated success — in production this form submits to a real order endpoint
+  setTimeout(() => {
+    saveCart([]);
+    document.getElementById('loading-overlay').classList.remove('show');
+    showToast('Order placed successfully! 🎉');
+    setTimeout(() => { window.location.href = "{% url 'index' %}"; }, 1500);
+  }, 1800);
+}
+
+// ── Toast ──
+let toastTimer;
+function showToast(msg, type) {
+  const existing = document.querySelector('.cart-toast');
+  if (existing) existing.remove();
+  clearTimeout(toastTimer);
+
+  const icon = type === 'error' ? 'fa-circle-xmark' :
+               type === 'warn'  ? 'fa-triangle-exclamation' : 'fa-circle-check';
+  const toast = document.createElement('div');
+  toast.className = 'cart-toast';
+  toast.innerHTML = `<i class="fa ${icon}"></i>${msg}`;
+  document.body.appendChild(toast);
+  toastTimer = setTimeout(() => toast.remove(), 3000);
+}
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded', () => {
+  seedSampleItems();
+  render();
+});
+</script>
+{% endblock %}

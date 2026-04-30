@@ -3,243 +3,407 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Restaurant
-        
-        {% block title %}
-          
-        {% endblock title %}
-    </title>
-     <!-- basic -->
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- mobile metas -->
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-   <!-- site metas -->
+    <title>MOMOS Restaurant {% block title %}{% endblock title %}</title>
+    <meta name="description" content="Authentic Nepalese momos made with fresh ingredients and traditional recipes. Visit us in Lalitpur.">
+    <meta name="keywords" content="momos, Nepalese food, restaurant, Nepal, dumplings">
 
-   <title> </title>
-   <meta name="keywords" content="">
-   <meta name="description" content="">
-   <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/lb.png' %}" type="image/png">
 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-      media="screen">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   <link rel="stylesheet" href="{% static 'css/s.css' %}">
-   <link rel="icon" href="{% static 'images/lb.png' %}">
-</head>
-<body>
-     <!--header section start -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-   <nav class="navbar navbar-expand-lg new_navbar bg-transparent" data-bs-theme="dark">
-    <div class="container-fluid nav-container">
-       <a class="navbar-brand brand-logo" href=""><b>M</b>OMOS</a>
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-             <li class="nav-item ">
-                <a class="nav-link" href="{% url 'index' %}">Home</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About Us</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="{% url 'menu' %}">Our Menu</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="{% url 'services' %}">Our Services</a>
-             </li>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- AlertifyJS -->
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css">
 
-          </ul>
-          
-          
-          <div class="d_flex justify-content-center align-items-center px-3 py-1 ">
-            <a href="{% url 'login' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/s.css' %}">
 
-               <button class="auth"> Log in
-               </button>
-            </a>
-         </div>
+    {% block extra_css %}{% endblock extra_css %}
+</head> 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg new_navbar bg-transparent" data-bs-theme="dark">
+        <div class="container-fluid nav-container">
+            <a class="navbar-brand brand-logo" href="{% url 'index' %}">MOMOS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-         <div class="d_flex justify-content-center align-items-center px-3 py-1 ">
-            <a href="{% url 'register' %}">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                            href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                            href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}"
+                            href="{% url 'menu' %}">Our Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}"
+                            href="{% url 'services' %}">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'reservation' %}active{% endif %}"
+                            href="{% url 'reservation' %}">Reservation</a>
+                    </li>
+                </ul>
 
-               <button class="auth"> Sign in
-               </button>
-            </a>
-          </div>
+                <!-- Auth Buttons -->
+                <div class="d-flex align-items-center gap-2 me-3">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="auth dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-user me-1"></i>
+                                {{ user.first_name|default:user.username }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url 'dashboard' %}">
+                                    <i class="fa-solid fa-gauge me-2"></i>Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">
+                                    <i class="fa-solid fa-user-pen me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'reservation' %}">
+                                    <i class="fa-solid fa-calendar me-2"></i>Reservations</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login' %}"><button class="auth">Log In</button></a>
+                        <a href="{% url 'register' %}"><button class="auth auth-outline">Sign Up</button></a>
+                    {% endif %}
+                </div>
 
-          <div class="icon_ho">
+                <!-- Social Icons -->
+                <div class="icon_ho me-2">
+                    <a href="https://www.facebook.com/nishan" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/nish.an977" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
 
-             <a href="https://www.facebook.com/nishan"><i class="fa-brands fa-facebook"></i></a>
-             <a href="https://www.instagram.com/nish.an977"><i class="fa-brands fa-instagram"></i></a>
-             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
+                <a href="{% url 'contact' %}"><button class="custom-btn btn-1">Contact Us</button></a>
+            </div>
+        </div>
+    </nav>
 
-          <a href="{% url 'contact' %}"><button class="custom-btn btn-1">Contact Us</button></a>
-
-          <!-- <form class="d-flex" role="search">
-             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-             <button class="btn btn-outline-success" type="submit">Search</button>
-           </form> -->
-       </div>
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="messages-container" id="messages-container">
+        {% for message in messages %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                alertify.set('notifier', 'position', 'top-right');
+                {% if message.tags == 'error' %}
+                    alertify.error('{{ message|escapejs }}');
+                {% elif message.tags == 'success' %}
+                    alertify.success('{{ message|escapejs }}');
+                {% elif message.tags == 'warning' %}
+                    alertify.warning('{{ message|escapejs }}');
+                {% else %}
+                    alertify.message('{{ message|escapejs }}');
+                {% endif %}
+            });
+        </script>
+        {% endfor %}
     </div>
- </nav>
+    {% endif %}
 
+    <!-- Main Content -->
+    {% block content %}{% endblock content %}
 
-
- {% block content %}
-   
- {% endblock content %}
-
-    <!-- footer section start -->
+    <!-- Footer -->
     <div class="footer_section layout_padding" data-aos="fade-up" data-aos-duration="1000">
         <div class="container">
-           <div class="row">
-              <div class="col-lg-3 col-sm-6">
-                 <h3 class="useful_text">About</h3>
-                 <p class="footer_text">We at <b style="font: bold;">MOMOS</b> are passionate about bringing you 
-                    the authentic taste of Nepal through our momos. Made with fresh, high-quality 
-                    ingredients and following traditional recipes, 
-                    our momos are bursting with flavor and sure to tantalize your taste buds. </p>
-              </div>
-              <div class="col-lg-3 col-sm-6">
-                 <h3 class="useful_text"><b style="color: #f76d37;">M</b>OMOS</h3>
-                 <div class="footer_menu">
-                    <ul>
-                       <li><a href="{% url 'index' %}">Home</a></li>
-                       <li><a href="{% url 'about' %}">About Us</a></li>
-                       <li><a href="{% url 'menu' %}">Our Menu</a></li>
-                       <li><a href="{% url 'services' %}">Our Services</a></li>
-                       <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                    </ul>
-                 </div>
-              </div>
-              <div class="col-lg-3 col-sm-6">
-                 <h3 class="useful_text">Legals</h3>
-                 <div class="footer_menu">
-                    <ul>
-                       <li><a href="#">Terms and conditions</a></li>
-                       <li><a href="#">Privacy</a></li>
-                       <li><a href="#">Policy</a></li>
-                       <li><a href="#">Support</a></li>
-                    </ul>
-                 </div>
-              </div>
-  
-              <div class="col-lg-3 col-sm-6">
-                 <h1 class="useful_text">Contact Us</h1>
-                 <div class="location_text">
-                    <ul>
-                       <li>
-                          <a href="#">
-                             <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Address :
-                                Chaysal, Lalitpur</span>
-                          </a>
-                       </li>
-                       <li>
-                          <a href="#">
-                             <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call :
-                                +9779825476152</span>
-                          </a>
-                       </li>
-                       <li>
-                          <a href="#">
-                             <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email :
-                                nishanshrestha2059@gmail.com</span>
-                          </a>
-                       </li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <!-- footer section end -->
-       <!-- contact section start -->
-    <div class="contact_section_2 layout_padding">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-6 padding_0">
-               <div class="form-container form-container-1" data-aos="fade-up" data-aos-duration="1000">
-                
-                     <h1 style="color: white; font-size: 50px; border-bottom: 3px solid #f76d37;" class="text-center"><b>GET IN TOUCH</b></h1>
-
-                     <div class="form-container">
-                        <div class="form">
-                        <form action="{% url 'index' %}" method="POST">
-                        {% csrf_token %}
-                           <input required="" placeholder="Name" type="text" class="input" name="name">
-                           <input required="" placeholder="Email" type="email" class="input" name="email">
-                           <input required="" placeholder="Phone Number" type="tel" class="input" name="phone">
-                           <textarea required="" placeholder="Say Hello" rows="10" cols="30" id="message"
-                              name="message" class="textarea"></textarea>
-                           <div class="button-container">
-                              <input type="submit" value="SEND" class="send-button">
-
-                           </div>
-                        </div>
-                     </div>
-                  </form>
-                     
- </div>
-
-               </div>
-               <div class="col-md-6 padding_0">
-                  <div class="map-responsive">
-                     <h1 style="color: black; font-size: 50px;" class="text-center"><b>OUR LOCATION</b></h1>
-
-                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14127.45802872326!2d85.3429805871582!3d27.721469400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1bda4a951f0f%3A0x3ddabb234891c3bd!2sBuddha%20Stupa!5e0!3m2!1sen!2snp!4v1713623524286!5m2!1sen!2snp"
-                        width="600px" height="620px" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
-               </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 mb-4">
+                    <h3 class="useful_text">About</h3>
+                    <p class="footer_text">We at <b>MOMOS</b> are passionate about bringing you
+                        the authentic taste of Nepal through our momos. Made with fresh, high-quality
+                        ingredients and following traditional recipes.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="https://www.facebook.com/nishan" class="footer-social"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nish.an977" class="footer-social"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer-social"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mb-4">
+                    <h3 class="useful_text"><b style="color: #f76d37;">M</b>OMOS</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'menu' %}">Our Menu</a></li>
+                            <li><a href="{% url 'services' %}">Our Services</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            <li><a href="{% url 'reservation' %}">Reservations</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mb-4">
+                    <h3 class="useful_text">Legals</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="#">Terms and Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="useful_text">Opening Hours</h3>
+                        <p class="footer_text" style="font-size: 13px;">
+                            Mon–Fri: 10:00 AM – 10:00 PM<br>
+                            Sat–Sun: 9:00 AM – 11:00 PM
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mb-4">
+                    <h3 class="useful_text">Contact Us</h3>
+                    <div class="location_text">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span class="padding_left_10">Chaysal, Lalitpur</span></a>
+                            </li>
+                            <li>
+                                <a href="tel:+9779825476152"><i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span class="padding_left_10">+977 9825476152</span></a>
+                            </li>
+                            <li>
+                                <a href="mailto:nishanshrestha2059@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span class="padding_left_10">nishanshrestha2059@gmail.com</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-
-     <!-- copyright section start -->
-     <div class="copyright_section">
-        <div class="container">
-           <p class="copyright_text">2023 All Rights Reserved. Design by <a href="#">Nishan</a></p>
         </div>
-     </div>
-     <!-- copyright section end -->
-     <!-- Javascript files-->
-     <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
-     crossorigin="anonymous"></script>
-  
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-     crossorigin="anonymous"></script>
-     
-     <script src=""></script>
-  
-     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-     <script>
-       AOS.init();
-     </script>
-  
-     <!-- sidebar -->
-     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    </div>
+
+    <!-- Contact + Map Section -->
+    <div class="contact_section_2 layout_padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 padding_0">
+                    <div class="form-container form-container-1" data-aos="fade-up" data-aos-duration="1000">
+                        <h1 style="color: white; font-size: 40px; border-bottom: 3px solid #f76d37;"
+                            class="text-center mb-4"><b>GET IN TOUCH</b></h1>
+                        <div class="form-container">
+                            <div class="form">
+                                <form action="{% url 'contact' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input required placeholder="Your Name" type="text" class="input" name="name">
+                                    <input required placeholder="Your Email" type="email" class="input" name="email">
+                                    <input required placeholder="Phone Number" type="tel" class="input" name="phone">
+                                    <textarea required placeholder="Your Message" rows="6" id="message"
+                                        name="message" class="textarea"></textarea>
+                                    <div class="button-container">
+                                        <input type="submit" value="SEND MESSAGE" class="send-button">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 padding_0">
+                    <div class="map-responsive">
+                        <h2 style="color: #1a1a1a; font-size: 36px;" class="text-center mb-3"><b>OUR LOCATION</b></h2>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14127.45802872326!2d85.3429805871582!3d27.721469400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1bda4a951f0f%3A0x3ddabb234891c3bd!2sBuddha%20Stupa!5e0!3m2!1sen!2snp!4v1713623524286!5m2!1sen!2snp"
+                            width="100%" height="550px" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" title="Our Location"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>/* ===== CONTACT FORM + MAP FIX ===== */
+
+.contact_section_2 {
+  background: #f9f5f0;
+  padding: 80px 0 !important;
+}
+
+.contact_section_2 .container-fluid {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact_section_2 .row {
+  align-items: stretch;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+  background: white;
+}
+
+.padding_0 {
+  padding: 0 !important;
+}
+
+/* Left form box */
+.form-container-1 {
+  background: linear-gradient(135deg, #1a0500, #3d1200, #f76d37);
+  min-height: 100%;
+  padding: 45px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-container-1 h1 {
+  color: white !important;
+  font-size: 36px !important;
+  font-weight: 800;
+  margin-bottom: 30px !important;
+  border-bottom: 3px solid #fff !important;
+  padding-bottom: 12px;
+}
+
+/* Inner form */
+.form-container-1 .form-container {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0;
+}
+
+.form-container-1 .input,
+.form-container-1 .textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.28);
+  color: white;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-container-1 .input::placeholder,
+.form-container-1 .textarea::placeholder {
+  color: rgba(255,255,255,0.75);
+}
+
+.form-container-1 .input:focus,
+.form-container-1 .textarea:focus {
+  background: rgba(255,255,255,0.18);
+  border-color: white;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.16);
+}
+
+.form-container-1 .textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.send-button {
+  width: 100%;
+  background: white;
+  color: #f76d37;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.send-button:hover {
+  background: #111;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Right map */
+.map-responsive {
+  background: #ffffff;
+  height: 100%;
+  padding: 35px;
+}
+
+.map-responsive h2 {
+  color: #1a1a1a !important;
+  font-size: 34px !important;
+  font-weight: 800;
+  margin-bottom: 22px !important;
+}
+
+.map-responsive iframe {
+  width: 100%;
+  min-height: 470px;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contact_section_2 {
+    padding: 50px 0 !important;
+  }
+
+  .contact_section_2 .row {
+    border-radius: 18px;
+  }
+
+  .form-container-1,
+  .map-responsive {
+    padding: 28px 20px;
+  }
+
+  .form-container-1 h1,
+  .map-responsive h2 {
+    font-size: 28px !important;
+  }
+
+  .map-responsive iframe {
+    min-height: 350px;
+  }
+}
+
+    </style>
+    <!-- Copyright -->
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text">
+                &copy; {% now "Y" %} MOMOS Restaurant. All Rights Reserved. Design by
+                <a href="#">Nishan</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
-  
-     <script src="https://kit.fontawesome.com/b52396679f.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/b52396679f.js" crossorigin="anonymous"></script>
+    <script>
+        AOS.init({ once: true });
+    </script>
+
+    {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

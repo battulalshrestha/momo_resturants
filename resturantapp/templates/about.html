@@ -1,30 +1,76 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}— Best Momos in Nepal{% endblock %}
+
 {% block content %}
-  {% load static %}
-      <!-- about section start -->
-      <div class="about_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="about_taital_main">
-                     <div class="about_taital">About Us</div>
-                     <p class="about_text">
-                        We at <b style="color: #f76d37;">M</b>OMOS are passionate about bringing you the authentic taste of Nepal through our momos. 
-                        Made with fresh, high-quality ingredients and following traditional recipes, 
-                        our momos are bursting with flavor and sure to tantalize your taste buds. 
-                        Whether you're a momo aficionado or a curious newcomer, we offer a warm and welcoming 
-                        atmosphere where you can savor this delicious Nepalese dish. 
-                        Come experience the magic of momos and embark on a culinary journey to Nepal!
-                     </p>
-                     <div class="read_bt"><a href="#">Read More</a></div>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="about_img"><img src="{% static 'images/cook1.jpg' %}" style="border: none; border-radius: 0%;"></div>
-               </div>
-            </div>
-         </div>
-      </div>
 
 
-{% endblock content %}
+
+
+
+<!-- Floating cart button (shows when cart has items) -->
+<a href="{% url 'cart' %}" class="float-cart-btn" id="float-cart" style="display:none;">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span>Cart</span>
+  <span class="f-count" id="float-count">0</span>
+</a>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://kit.fontawesome.com/b52396679f.js" crossorigin="anonymous"></script>
+
+<script>
+  AOS.init({ once: true, offset: 60 });
+
+  // ── Live cart count in navbar + floating button ──────────
+  function updateCartUI() {
+    try {
+      const cart = JSON.parse(localStorage.getItem('momos_cart') || '[]');
+      const qty = cart.reduce(function(s, i) { return s + (i.qty || 1); }, 0);
+      ['nav-cart-count','nav-cart-count-2','float-count'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = qty;
+      });
+      var fb = document.getElementById('float-cart');
+      if (fb) fb.style.display = qty > 0 ? 'flex' : 'none';
+    } catch(e) {}
+  }
+  updateCartUI();
+  window.addEventListener('storage', updateCartUI);
+
+  // ── Add-to-cart helper (called from menu/gallery pages) ──
+  window.addToCart = function(id, name, category, price, emoji) {
+    try {
+      var cart = JSON.parse(localStorage.getItem('momos_cart') || '[]');
+      var idx = cart.findIndex(function(i) { return i.id === id; });
+      if (idx > -1) { cart[idx].qty++; }
+      else { cart.push({ id: id, name: name, category: category, price: price, qty: 1, emoji: emoji || '🥟' }); }
+      localStorage.setItem('momos_cart', JSON.stringify(cart));
+      updateCartUI();
+      showMomoToast(name + ' added to cart!');
+    } catch(e) {}
+  };
+
+  // ── Toast ─────────────────────────────────────────────────
+  window.showMomoToast = function(msg) {
+    var old = document.querySelector('.momo-toast');
+    if (old) old.remove();
+    var t = document.createElement('div');
+    t.className = 'momo-toast';
+    t.innerHTML = '<i class="fa-solid fa-circle-check"></i>' + msg;
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 2800);
+  };
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>
+
+{% endblock %}
